@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ATS Result</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="card analyzer-card p-4">
+      <h1 id="scoreTitle"></h1>
+      <div id="resultContent"></div>
+      <a href="index.html" class="btn btn-outline-primary mt-4">Analyze Another Resume</a>
+    </div>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("atsResult"));
+
+    document.getElementById("scoreTitle").innerText = "ATS Score: " + data.score + "%";
+
+    document.getElementById("resultContent").innerHTML = `
+      <h3>Strengths</h3>
+      ${data.strong_skills.map(s => `<span class="skill-box">${s}</span>`).join("")}
+
+      <h3 class="mt-4">Weaknesses</h3>
+      ${data.weak_skills.map(s => `<span class="skill-box">${s}</span>`).join("")}
+
+      <h3 class="mt-4">Missing Skills</h3>
+      ${data.missing_skills.map(s => `<span class="skill-box">${s}</span>`).join("")}
+
+      <h3 class="mt-4">AI Feedback</h3>
+      <p>${data.format_feedback}</p>
+
+      <h3 class="mt-4">Improvements</h3>
+      ${data.improvements.map(i => `<p>• ${i}</p>`).join("")}
+    `;
+  </script>
+</body>
+</html>
