@@ -25,7 +25,7 @@ async function analyzeResume() {
   }, 300);
 
   try {
-    const res = await fetch("http://127.0.0.1:8000/analyze", {
+    const res = await fetch("https://ai-resume-analyzer-j0tt.onrender.com/analyze", {
       method: "POST",
       body: formData
     });
